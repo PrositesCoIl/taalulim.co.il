@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>תעלולים | מתנפחים להשכרה ולמכירה – ייצור, השכרה ותיקון מתנפחים</title>
+  <meta name="description" content="תעלולים – מפעל לייצור מתנפחים עם מעל 30 שנות ניסיון. מתנפחים להשכרה ולמכירה, התאמה אישית, צוות הקמה ומפעילים מוסמכים. לפרטים: 052-550-1002." />
+
+  <meta name="theme-color" content="#0b1220" />
+
+  <style>
+    :root{
+      /* דרישה: גודל טקסט לא פחות מ-18px בכל האתר */
+      font-size: 18px;
+
+      --bg: #0b1220;
+      --panel: rgba(255,255,255,0.08);
+      --panel-strong: rgba(255,255,255,0.12);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.72);
+      --border: rgba(255,255,255,0.16);
+
+      --accent: #7dd3fc;     /* תכלת עדין */
+      --accent-2: #a78bfa;   /* סגול עדין */
+      --ok: #86efac;
+
+      --shadow: 0 18px 50px rgba(0,0,0,0.35);
+      --radius: 18px;
+
+      --container: 1100px;
+      --header-h: 76px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(1100px 600px at 15% 10%, rgba(125,211,252,0.18), transparent 60%),
+        radial-gradient(900px 500px at 85% 0%, rgba(167,139,250,0.18), transparent 55%),
+        radial-gradient(800px 500px at 50% 100%, rgba(134,239,172,0.10), transparent 55%),
+        var(--bg);
+      font-family: system-ui, -apple-system, "Segoe UI", Arial, Tahoma, sans-serif;
+      line-height: 1.6;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* Accessibility: קישור "דלג לתוכן" (מופיע רק בפוקוס) */
+    .skip-link{
+      position: absolute;
+      inset-inline-start: 0.75rem;
+      top: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: rgba(255,255,255,0.95);
+      color: #111827;
+      border-radius: 14px;
+      transform: translateY(-160%);
+      transition: transform 160ms ease;
+      z-index: 9999;
+      text-decoration: none;
+      border: 2px solid rgba(17,24,39,0.15);
+    }
+    .skip-link:focus{
+      transform: translateY(0);
+      outline: none;
+      box-shadow: 0 16px 30px rgba(0,0,0,0.25);
+    }
+
+    a{ color: inherit; }
+    a:focus-visible,
+    button:focus-visible{
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 12px;
+    }
+
+    .container{
+      width: min(var(--container), calc(100% - 2rem));
+      margin-inline: auto;
+    }
+
+    header.site-header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      height: var(--header-h);
+      display: flex;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      background: rgba(11,18,32,0.62);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner{
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      justify-content: space-between;
+    }
+
+    .brand{
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      white-space: nowrap;
+    }
+    .brand .name{
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      font-size: 1.15rem;
+    }
+    .brand .tag{
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    nav.primary{
+      display: flex;
+      gap: 0.9rem;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    nav.primary a{
+      text-decoration: none;
+      padding: 0.45rem 0.65rem;
+      border-radius: 12px;
+      color: var(--muted);
+      border: 1px solid transparent;
+      transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+    }
+    nav.primary a:hover{
+      color: var(--text);
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.14);
+    }
+
+    .header-cta{
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+      white-space: nowrap;
+    }
+    .pill{
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.06);
+    }
+    .pill strong{ font-weight: 800; }
+    .pill:hover{
+      background: rgba(255,255,255,0.10);
+    }
+
+    main{ padding-bottom: 3rem; }
+
+    section{
+      scroll-margin-top: calc(var(--header-h) + 14px);
+      padding: 3.5rem 0;
+    }
+
+    .hero{
+      padding-top: 2.25rem;
+    }
+
+    .hero-grid{
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 1.4rem;
+      align-items: center;
+    }
+
+    .hero-card{
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.05));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.4rem;
+    }
+
+    .eyebrow{
+      color: var(--muted);
+      margin: 0 0 0.65rem 0;
+      font-weight: 650;
+    }
+    h1{
+      font-size: clamp(1.55rem, 2.1vw + 1rem, 2.35rem);
+      line-height: 1.2;
+      margin: 0 0 0.85rem 0;
+      letter-spacing: 0.2px;
+    }
+    .lead{
+      margin: 0 0 1.2rem 0;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .actions{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      padding: 0.75rem 1rem;
+      border-radius: 14px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.08);
+      font-weight: 750;
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.22); }
+    .btn.primary{
+      background: linear-gradient(90deg, rgba(125,211,252,0.25), rgba(167,139,250,0.22));
+      border-color: rgba(125,211,252,0.30);
+    }
+    .btn.primary:hover{
+      background: linear-gradient(90deg, rgba(125,211,252,0.32), rgba(167,139,250,0.28));
+      border-color: rgba(125,211,252,0.40);
+    }
+
+    .hero-media{
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: rgba(255,255,255,0.04);
+      box-shadow: var(--shadow);
+    }
+    .hero-media img{
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+    .hero-media figcaption{
+      padding: 0.85rem 1rem;
+      color: var(--muted);
+    }
+
+    .section-title{
+      font-size: 1.55rem;
+      margin: 0 0 0.5rem 0;
+    }
+    .section-sub{
+      margin: 0 0 1.25rem 0;
+      color: var(--muted);
+    }
+
+    .grid{
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1rem;
+    }
+    .card{
+      grid-column: span 6;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      padding: 1.1rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+      transition: transform 160ms ease, background 160ms ease;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.085);
+    }
+    .card h3{
+      margin: 0 0 0.4rem 0;
+      font-size: 1.2rem;
+    }
+    .card p{
+      margin: 0;
+      color: rgba(255,255,255,0.82);
+    }
+
+    .steps{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.9rem;
+    }
+    .step{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+    }
+    .step strong{
+      display: block;
+      margin-bottom: 0.25rem;
+      font-weight: 850;
+    }
+    .step span{
+      color: rgba(255,255,255,0.82);
+    }
+
+    .gallery{
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1rem;
+    }
+    .gallery figure{
+      margin: 0;
+      grid-column: span 4;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: rgba(255,255,255,0.06);
+      box-shadow: 0 12px 34px rgba(0,0,0,0.22);
+    }
+    .gallery img{
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+    }
+    .gallery figcaption{
+      padding: 0.9rem 1rem;
+      color: var(--muted);
+    }
+
+    .contact-panel{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 0.75rem;
+    }
+    .contact-row{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      padding-bottom: 0.65rem;
+    }
+    .contact-row:last-child{
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .contact-row .label{
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .contact-row a{
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(255,255,255,0.35);
+    }
+    .contact-row a:hover{
+      border-bottom-color: rgba(255,255,255,0.65);
+    }
+
+    footer{
+      border-top: 1px solid var(--border);
+      background: rgba(11,18,32,0.65);
+      padding: 2rem 0;
+    }
+    .footer-grid{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      color: var(--muted);
+    }
+    .footer-grid .phone{
+      color: var(--text);
+      font-weight: 900;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .legal{
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      border-radius: var(--radius);
+      padding: 1rem;
+      color: rgba(255,255,255,0.78);
+    }
+    .legal a{
+      color: var(--text);
+      word-break: break-word;
+    }
+
+    /* רספונסיביות */
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .card{ grid-column: span 12; }
+      .gallery figure{ grid-column: span 12; }
+      nav.primary{ display: none; } /* נשאר נגיש דרך גלילה (אופציונלי) */
+      .brand .tag{ display: none; }
+    }
+
+    /* Motion: עדין + מכבד prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce){
+      *{ scroll-behavior: auto !important; transition: none !important; }
+      .btn:hover, .card:hover{ transform: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">דלג לתוכן המרכזי</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <div class="brand" aria-label="כותרת האתר">
+        <div class="name">תעלולים</div>
+        <div class="tag">אטרקציות לאירועים</div>
+      </div>
+
+      <nav class="primary" aria-label="תפריט עליון">
+        <a href="#about">אודות</a>
+        <a href="#services">שירותים</a>
+        <a href="#how">איך זה עובד</a>
+        <a href="#gallery">גלריה</a>
+        <a href="#contact">צור קשר</a>
+      </nav>
+
+      <div class="header-cta">
+        <a class="pill" href="tel:0525501002" aria-label="לחיוג לבן 052-550-1002">
+          📞 <strong>052-550-1002</strong>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container" role="main">
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero-grid">
+        <div class="hero-card">
+          <p class="eyebrow">ייצור מתנפחים בהתאמה אישית • השכרה • תיקון • ציוד משלים לאירועים</p>
+
+          <h1 id="heroTitle">מתנפחים להשכרה ולמכירה — ישירות מהמפעל</h1>
+
+          <p class="lead">
+            מפעל עם מעל 30 שנות ניסיון. מתנפחים לכל סוגי האירועים: פרטיים, מוסדות, חברות ורשויות —
+            עם דגש על התאמה לצרכים, בטיחות ושירות מקצועי.
+          </p>
+
+          <div class="actions" aria-label="פעולות מרכזיות">
+            <a class="btn primary" href="tel:0525501002" aria-label="לחיוג עכשיו 052-550-1002">חייגו עכשיו</a>
+
+            <!-- הקישור שביקשת (שם: "מתנפחים להשכרה" לכתובת האתר הראשי) -->
+            <a class="btn" href="https://www.taalulim.co.il/" rel="nofollow">מתנפחים להשכרה</a>
+
+            <a class="btn" href="#contact">פרטי קשר</a>
+          </div>
+        </div>
+
+        <figure class="hero-media">
+          <!-- החליפו את שם הקובץ רק אם שיניתם אותו בריפו -->
+          <img
+            src="assets/images/IMG-20251109-WA0060.jpg"
+            alt="מתקן מתנפח באירוע לילדים"
+            loading="eager"
+            decoding="async"
+          />
+          <figcaption>טעימה מהאווירה – מתקנים מתנפחים שמרימים כל אירוע.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="about" aria-labelledby="aboutTitle">
+      <h2 class="section-title" id="aboutTitle">אודות</h2>
+      <p class="section-sub">
+        לא רק השכרה — גם ייצור בהתאמה אישית, לצד מעטפת שירות לאירועים.
+      </p>
+
+      <div class="grid">
+        <article class="card" aria-label="מי אנחנו">
+          <h3>אנחנו המפעל</h3>
+          <p>
+            תעלולים משלבים ייצור מתקנים מתנפחים עם השכרה ומכירה, כך שאפשר להתאים פתרון מדויק למאפייני האירוע.
+          </p>
+        </article>
+
+        <article class="card" aria-label="עם מי אנחנו עובדים">
+          <h3>מתאימים לכל קהל</h3>
+          <p>
+            ניסיון בעבודה עם לקוחות פרטיים וגם עם גופים מקצועיים ומוסדיים – כדי לנהל אירוע בצורה מסודרת ובטוחה.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="services" aria-labelledby="servicesTitle">
+      <h2 class="section-title" id="servicesTitle">שירותים</h2>
+      <p class="section-sub">
+        מהמתנפח הנכון ועד להשלמת חוויית האירוע עם ציוד נוסף – הכול במקום אחד.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <h3>מתנפחים להשכרה</h3>
+          <p>
+            מבחר מתקנים לאירועים בחוץ ובפנים – כולל אפשרויות שמתאימות גם לחצרות וגם לחללים סגורים.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>ייצור מתנפחים בהתאמה אישית</h3>
+          <p>
+            רוצים מידה, צבע, או מיתוג? ניתן לייצר מתנפחים לפי דרישות האירוע/המותג.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>ציוד משלים לאירועים</h3>
+          <p>
+            מתקני לונה פארק, דוכני מזון, עמדות מולטימדיה ושולחנות משחק – להפקה מגוונת ומרשימה.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>תיקון מתנפחים</h3>
+          <p>
+            שירות תיקון שמאפשר לשמור על ציוד לאורך זמן – גם אחרי שימוש רב.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="how" aria-labelledby="howTitle">
+      <h2 class="section-title" id="howTitle">איך זה עובד</h2>
+      <p class="section-sub">
+        דף נחיתה בלי טפסים: מתקשרים, מתאמים, ומקבלים פתרון שמותאם לאירוע.
+      </p>
+
+      <ul class="steps">
+        <li class="step">
+          <strong>מתאימים את המתקן</strong>
+          <span>לפי גיל המשתתפים, מיקום האירוע, תנאי שטח והאם רוצים מתנפחי מים/אתגר.</span>
+        </li>
+        <li class="step">
+          <strong>הקמה והפעלה מקצועית</strong>
+          <span>צוות הקמה מנוסה + מפעילים מוסמכים (לפי הצורך), עם דגש על בטיחות.</span>
+        </li>
+        <li class="step">
+          <strong>אפשרות לפתרונות תשתית</strong>
+          <span>באירועים עם מגבלת חשמל ניתן לשקול פתרונות כגון השכרה עם גנרטור (בהתאם לתנאי האירוע).</span>
+        </li>
+      </ul>
+    </section>
+
+    <section id="gallery" aria-labelledby="galleryTitle">
+      <h2 class="section-title" id="galleryTitle">גלריה</h2>
+      <p class="section-sub">
+        שילבתי 3 תמונות בלבד (כדי לשמור על דף מהיר, נקי ונגיש) – ורק מהתמונות שהעלית.
+      </p>
+
+      <div class="gallery" aria-label="גלריית תמונות">
+        <figure>
+          <img
+            src="assets/images/IMG-20251109-WA0046.jpg"
+            alt="מתקן מתנפח צבעוני לאירוע"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>מתנפחים שמוסיפים צבע, תנועה ואנרגיה.</figcaption>
+        </figure>
+
+        <figure>
+          <img
+            src="assets/images/IMG-20251109-WA0069.jpg"
+            alt="מתקן מתנפח לפעילות ילדים"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>אטרקציה שמושכת ילדים (ולפעמים גם מבוגרים).</figcaption>
+        </figure>
+
+        <figure>
+          <img
+            src="assets/images/IMG-20251109-WA0051.jpg"
+            alt="מתקן מתנפח באירוע חוץ"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>מתאים לאירועים פרטיים וגם לאירועים מאורגנים.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contactTitle">
+      <h2 class="section-title" id="contactTitle">צור קשר</h2>
+      <p class="section-sub">
+        בלי טפסים ובלי השארת פרטים — פשוט מתקשרים או שולחים מייל.
+      </p>
+
+      <div class="contact-panel" role="region" aria-label="פרטי קשר">
+        <div class="contact-row">
+          <div class="label">טלפון (בן)</div>
+          <div><a href="tel:0525501002">052-550-1002</a></div>
+        </div>
+
+        <div class="contact-row">
+          <div class="label">משרד</div>
+          <div><a href="tel:0522614477">052-261-4477</a></div>
+        </div>
+
+        <div class="contact-row">
+          <div class="label">אימייל</div>
+          <div><a href="mailto:taalulim@gmail.com">taalulim@gmail.com</a></div>
+        </div>
+
+        <div class="contact-row">
+          <div class="label">כתובת</div>
+          <div>הסדנא 4, פתח תקווה</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container footer-grid">
+      <div>
+        <a class="phone" href="tel:0525501002" aria-label="לחיוג 052-550-1002">
+          📞 052-550-1002
+        </a>
+        <div>מייל: <a href="mailto:taalulim@gmail.com">taalulim@gmail.com</a></div>
+      </div>
+
+      <div class="legal" aria-label="פרטיות">
+        <p style="margin-top:0;">
+          אנו מכבדים את פרטיות המשתמשים באתר זה. דף הנחיתה אינו כולל טפסי השארת פרטים ואינו אוסף מידע אישי באופן ישיר.
+          ייתכן ונעשה שימוש בכלי סטטיסטיקה וניתוח תנועה (כגון cookies) לצורך שיפור חוויית המשתמש.
+        </p>
+
+        <p>
+          האתר מאוחסן ומופעל באמצעות פלטפורמת github, וייתכן כי נתונים טכניים נאספים בהתאם למדיניות הפלטפורמה.
+          ניתן לעיין במדיניות הפרטיות של github בקישור הבא.
+          <br />
+          <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">
+            https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement
+          </a>
+        </p>
+
+        <p style="margin-bottom:0;">
+          © <span id="year"></span> תעלולים. כל הזכויות שמורות.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // עדכון שנה בפוטר (ללא מעקב, ללא טפסים, ללא צד-שלישי)
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </footer>
+</body>
+</html>
